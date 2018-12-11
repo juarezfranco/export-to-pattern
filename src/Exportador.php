@@ -29,7 +29,6 @@ class Exportador
             $colunas = $this->arrayMap($layout, function ($campo) use ($contract) {
 
                 $atributo = $contract->getAtributoParaExportacao($campo['nome']);
-                $atributo = $atributo ?: '';
 
                 // Caso atributo for uma coleção, então aplica recursivamente o processarDados para tratar o layout dessa coleção
                 if (array_key_exists('loop', $campo)) {
@@ -46,6 +45,8 @@ class Exportador
                     $colunas = $this->processarDados($campo['layout'], $dados);
                     return implode('',$colunas);
                 }
+
+                $atributo = $atributo ?: '';
 
                 // Preenche com texto padrão
                 if (!$atributo && array_key_exists('padrao', $campo)) {
