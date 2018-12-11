@@ -1,0 +1,16 @@
+{
+  "name": "juarezfranco/export-to-pattern",
+  "description": "Utilitário para exportar dados para um padrão específico.",
+  "license": "MIT",
+  "require": {
+    "php": ">=5.3.0"
+  },
+  "autoload": {
+    "classmap": [
+      "database"
+    ],
+    "psr-4": {
+      "JuarezFranco\\ExportToPattern\\": "src/"
+    }
+  }
+}
