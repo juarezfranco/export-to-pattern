@@ -4,7 +4,7 @@ Utilitário para exportar dados para um arquivo à partir de um layout/padrão e
 
 ### Como utilizar
 
-Exemplo de definição do Layout
+Exemplo de definição do [a layout](https://github.com/juarezfranco/export-to-pattern/blob/master/layout-exemplo.pdf)
 
 ````
     $layout = [
