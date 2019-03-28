@@ -157,6 +157,28 @@ Exemplo de uso
 
 ````
 
+Exemplo classe que implementa \JuarezFranco\ExportToPattern\GetAtributoParaExportacaoContract deve escrever o método getAtributoParaExportacao
+
+````
+    public function getAtributoParaExportacao($nomeDoAtributo)
+    {
+        switch ($nomeDoAtributo) {
+
+            case 'APRES_LOTE':
+                return $this->competencia_da_apresentacao;
+
+            case 'CNES_HOSP':
+                return $this->estabelecimentoDeSaude->cnes;
+
+            case 'ORG_EMIS_AIH':
+                return $this->codigo_do_orgao_emissor;
+                break;
+
+            // restantes dos atributos aqui
+        }
+    }
+````
+
 ### License
 
 The MIT License (MIT)
