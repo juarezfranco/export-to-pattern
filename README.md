@@ -4,11 +4,11 @@ Utilitário para exportar dados para um arquivo à partir de um layout/padrão e
 
 ### Requisitos
 
-    - PHP >= 5.3.0
+    PHP >= 5.3.0
 
 ### Instalar
 
-    `composer require juarezfranco/export-to-pattern`
+    composer require juarezfranco/export-to-pattern
 
 ### Como utilizar
 
