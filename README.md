@@ -2,6 +2,14 @@
 
 Utilitário para exportar dados para um arquivo à partir de um layout/padrão específico.
 
+### Requisitos
+
+    - PHP >= 5.3.0
+
+### Instalar
+
+    `composer require juarezfranco/export-to-pattern`
+
 ### Como utilizar
 
 Exemplo de definição do [layout](https://github.com/juarezfranco/export-to-pattern/blob/master/layout-exemplo.pdf)
