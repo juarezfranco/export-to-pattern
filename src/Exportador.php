@@ -2,11 +2,37 @@
 
 namespace JuarezFranco\ExportToPattern;
 
+/**
+ * Classe responsável por criar e processar layout gerando arquivo de texto que representa lista de objetos que implementam GetAtributoParaExportacaoContract
+ */
 class Exportador
 {
     private $arquivo = null;
     private $caminhoDoArquivo = null;
 
+    public function getCaminhoDoArquivo()
+    {
+        return $this->caminhoDoArquivo;
+    }
+
+    public function fopen($nomeDoArquivo)
+    {
+        $respositorio = '/tmp/exportador/'. md5(uniqid() . rand()) .'/';
+        $this->caminhoDoArquivo = $respositorio . $nomeDoArquivo;
+        mkdir($respositorio, 0777, true);
+        $this->arquivo = fopen($this->caminhoDoArquivo, 'a');
+    }
+
+    public function fclose()
+    {
+        fclose($this->arquivo);
+    }
+
+    /**
+     * Gera conteudo que será salvo adc no arquivo
+     * @param array $layout configuração de layout, determina atributos que existem no objeto que implementa GetAtributoParaExportacaoContract
+     * @param array $dados lista de objetos que implementam GetAtributoParaExportacaoContract
+     */
     public function gerarLinhas($layout, $dados)
     {
         $linhas = $this->processarDados($layout, $dados);
@@ -18,9 +44,9 @@ class Exportador
      * Obs.: Um dado pode ser uma coleção de dados, nesse casso é aplicado recursivamente este método processarDados
      * aplicando para cada dado da coleção as regras do layout especificado.
      *
-     * @param Collection $layout uma coleção de atributos do dado com regras que serão aplicadas
-     * @param Collection $dados uma coleção de dados que cada um deve implementar GetAtributoParaExportacaoContract
-     * @return Collection
+     * @param array $layout uma coleção de atributos do dado com regras que serão aplicadas
+     * @param array $dados uma coleção de dados que cada um deve implementar GetAtributoParaExportacaoContract
+     * @return array
      */
     private function processarDados($layout, $dados)
     {
@@ -88,24 +114,6 @@ class Exportador
 
             return implode('', $colunas);
         });
-    }
-
-    public function getCaminhoDoArquivo()
-    {
-        return $this->caminhoDoArquivo;
-    }
-
-    public function fopen($nomeDoArquivo)
-    {
-        $respositorio = '/tmp/exportador/'. md5(uniqid() . rand()) .'/';
-        $this->caminhoDoArquivo = $respositorio . $nomeDoArquivo;
-        mkdir($respositorio, 0777, true);
-        $this->arquivo = fopen($this->caminhoDoArquivo, 'a');
-    }
-
-    public function fclose()
-    {
-        fclose($this->arquivo);
     }
 
     // alias array_map
